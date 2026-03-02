@@ -5,17 +5,158 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Produtos Cadastrados</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;padding:20px}
-    table{border-collapse:collapse;width:100%}
-    th,td{border:1px solid #ccc;padding:8px;text-align:left}
-    a.button{display:inline-block;padding:8px 12px;background:#1976d2;color:#fff;text-decoration:none;border-radius:4px}
+    :root {
+      --bg-a: #f6f8fb;
+      --bg-b: #eef2ff;
+      --surface: #ffffff;
+      --text: #182433;
+      --muted: #5f6f82;
+      --primary: #0f6fff;
+      --primary-dark: #0a56c9;
+      --danger: #d43b3b;
+      --danger-dark: #b82828;
+      --border: #d9e2ef;
+      --shadow: 0 14px 30px rgba(16, 34, 68, 0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, #dde8ff 0%, transparent 32%),
+        radial-gradient(circle at 100% 20%, #d7f4ff 0%, transparent 30%),
+        linear-gradient(160deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+      padding: 28px 18px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.3vw, 2rem);
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(15, 111, 255, 0.22);
+      transition: transform 0.16s ease, background 0.16s ease;
+      white-space: nowrap;
+    }
+
+    a.button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.26s ease;
+    }
+
+    .product-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .product-card p {
+      margin: 4px 0;
+      color: #304155;
+      font-size: 0.95rem;
+    }
+
+    .product-card strong { color: #1c2b3e; }
+
+    .delete-button {
+      margin-top: 12px;
+      padding: 9px 10px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--danger);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    .delete-button:hover {
+      background: var(--danger-dark);
+      transform: translateY(-1px);
+    }
+
+    .empty {
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
-  <h1>Produtos Cadastrados</h1>
-  <p><a href="/form.html" class="button">Cadastrar novo produto</a></p>
-  <div id="list"></div>
+  <main class="page">
+    <section class="top">
+      <div>
+        <h1>Produtos Cadastrados</h1>
+        <p class="subtitle">Gerencie seus itens e remova registros com um clique.</p>
+      </div>
+      <a href="./form.html" class="button">Cadastrar novo produto</a>
+    </section>
 
-  <script src="/app.js"></script>
+    <div id="list"></div>
+  </main>
+
+  <script src="./app.js"></script>
 </body>
 </html>
